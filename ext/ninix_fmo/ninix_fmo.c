@@ -47,7 +47,7 @@ struct ninix_fmo {
 };
 
 #ifdef WIN32
-static char *strndup(char *s, size_t n) {
+static char *strndup_(char *s, size_t n) {
 	char *p = malloc(sizeof(char) * (n + 1));
 	if (p == NULL) {
 		return NULL;
@@ -117,7 +117,7 @@ static VALUE ninix_fmo_init(VALUE self, VALUE name, VALUE flag) {
     if (len + 6 >= MAX_PATH) {
         goto error_too_long;
     }
-    char *n = strndup(RSTRING_PTR(name), len);
+    char *n = strndup_(RSTRING_PTR(name), len);
     if (n == NULL) {
         goto error_strndup;
     }
