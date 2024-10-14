@@ -9,10 +9,11 @@
 
 #else
 
+#include <fcntl.h>
 #include <semaphore.h>
 #include <sys/mman.h>
 #include <sys/stat.h>
-#include <fcntl.h>
+#include <unistd.h>
 
 #endif // WIN32
 
