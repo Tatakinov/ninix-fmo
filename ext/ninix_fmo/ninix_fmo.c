@@ -314,15 +314,15 @@ static VALUE ninix_fmo_write(VALUE self, VALUE data) {
         return Qfalse;
     }
     char *d = RSTRING_PTR(data);
-    p->memory->size = RSTRING_LEN(data);
-    if (p->memory->size >= PATH_MAX) {
+#ifdef WIN32
+    if (RSTRING_LEN(data) >= MAX_PATH) {
         rb_raise(rb_eArgError, "data is too long");
         return Qfalse;
     }
-#ifdef WIN32
     if (WaitForSingleObject(p->mutex, INFINITE) != WAIT_OBJECT_0) {
         goto error_mutex;
     }
+    p->memory->size = RSTRING_LEN(data);
     memcpy(p->memory->buf, d, p->memory->size);
     p->memory->buf[p->memory->size] = '\0';
     if (ReleaseMutex(p->mutex) == FALSE) {
@@ -337,9 +337,14 @@ error_mutex:
     rb_raise(rb_eSystemCallError, "failed to wait/release mutex");
     return Qfalse;
 #else
+    if (RSTRING_LEN(data) >= PATH_MAX) {
+        rb_raise(rb_eArgError, "data is too long");
+        return Qfalse;
+    }
     if (sem_wait(&p->memory->sem) == -1) {
         goto error_sem;
     }
+    p->memory->size = RSTRING_LEN(data);
     memcpy(p->memory->buf, d, p->memory->size);
     p->memory->buf[p->memory->size] = '\0';
     if (sem_post(&p->memory->sem) == -1) {
