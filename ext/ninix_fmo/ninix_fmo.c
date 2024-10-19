@@ -9,6 +9,7 @@
 
 #else
 
+#include <errno.h>
 #include <fcntl.h>
 #include <semaphore.h>
 #include <sys/mman.h>
@@ -237,28 +238,28 @@ error_too_long:
     return self;
     if (0) {
 error_sem_init:
-        rb_raise(rb_eSystemCallError, "failed to init semaphore");
+        rb_raise(rb_eSystemCallError, "%s: %s", "failed to init semaphore", strerror(errno));
     }
     munmap(p->memory, sizeof(struct shm_t));
     if (0) {
 error_mmap:
-        rb_raise(rb_eSystemCallError, "failed to mmap");
+        rb_raise(rb_eSystemCallError, "%s: %s", "failed to mmap", strerror(errno));
     }
     if (0) {
 error_ftruncate:
-        rb_raise(rb_eSystemCallError, "failed to truncate");
+        rb_raise(rb_eSystemCallError, "%s: %s", "failed to truncate", strerror(errno));
     }
     if (p->is_owner) {
         shm_unlink(p->name);
     }
     if (0) {
 error_shm_open:
-        rb_raise(rb_eSystemCallError, "failed to shm_open");
+        rb_raise(rb_eSystemCallError, "%s: %s", "failed to shm_open", strerror(errno));
     }
     free(p->name);
     if (0) {
 error_strndup:
-        rb_raise(rb_eSystemCallError, "failed to strndup");
+        rb_raise(rb_eSystemCallError, "%s: %s", "failed to strndup", strerror(errno));
     }
     if (0) {
 error_too_long:
@@ -305,7 +306,7 @@ error_sem:
         shm_unlink(p->name);
     }
     p->status = ERR;
-    rb_raise(rb_eSystemCallError, "failed to wait/post semaphore");
+    rb_raise(rb_eSystemCallError, "%s: %s", "failed to wait/post semaphore", strerror(errno));
     return Qfalse;
 #endif // WIN32
 }
@@ -360,7 +361,7 @@ error_sem:
     munmap(p->memory, sizeof(struct shm_t));
     shm_unlink(p->name);
     p->status = ERR;
-    rb_raise(rb_eSystemCallError, "failed to wait/post semaphore");
+    rb_raise(rb_eSystemCallError, "%s: %s", "failed to wait/post semaphore", strerror(errno));
     return Qfalse;
 #endif // WIN32
 }
