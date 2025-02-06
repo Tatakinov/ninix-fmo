@@ -2,6 +2,12 @@
 
 A gem for using FileMappingObject in ninix-kagari.
 
+# Requirements
+
+- rake
+
+- rake-compiler
+
 ## How to Install
 
 ```
