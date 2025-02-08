@@ -4,9 +4,9 @@ A gem for using FileMappingObject in ninix-kagari.
 
 ## Requirements
 
-- rake
-
-- rake-compiler
+```
+apt install build-essential rake rake-compiler ruby-dev
+```
 
 ## How to Install
 
