@@ -10,4 +10,4 @@ module NinixFMO
   end
 end
 
-require 'ninix-fmo/ninix-fmo'
+require 'ninix-fmo/ninix_fmo'
