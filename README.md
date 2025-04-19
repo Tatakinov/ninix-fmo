@@ -11,8 +11,8 @@ apt install build-essential rake rake-compiler ruby-dev
 ## How to Install
 
 ```
-git clone https://github.com/Tatakinov/ninix_fmo.git
-cd ninix_fmo
+git clone https://github.com/Tatakinov/ninix-fmo.git
+cd ninix-fmo
 rake install
 ```
 

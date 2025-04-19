@@ -13,4 +13,4 @@ for f in func
   abort 'missing ' + f unless have_func f
 end
 
-create_makefile 'ninix_fmo/ninix_fmo'
+create_makefile 'ninix-fmo/ninix-fmo'

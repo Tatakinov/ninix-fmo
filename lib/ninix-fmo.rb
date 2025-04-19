@@ -1,4 +1,4 @@
-require_relative 'ninix_fmo/version'
+require_relative 'ninix-fmo/version'
 
 module NinixFMO
   O_RDONLY = 0x01
@@ -10,4 +10,4 @@ module NinixFMO
   end
 end
 
-require 'ninix_fmo/ninix_fmo'
+require 'ninix-fmo/ninix-fmo'

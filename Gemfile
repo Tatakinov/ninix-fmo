@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-# Specify your gem's dependencies in ninix_fmo.gemspec
+# Specify your gem's dependencies in ninix-fmo.gemspec
 gemspec
 
 gem "bundler", "~> 1.5"
