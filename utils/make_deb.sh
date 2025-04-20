@@ -42,5 +42,4 @@ sed -i -e "s/@installed_size/${INSTALLED_SIZE}/g" -e "s/@version/${VERSION}/g" D
 popd
 fakeroot dpkg-deb --build ${WORKDIR} .
 
-rm ninix-fmo.gemspec
 rm -r pkg gem work
