@@ -2,8 +2,8 @@
 WORKDIR=work
 RUBY=ruby
 
-SPEC_DIR="usr/share/rubygems-integration/3.1.0/specifications"
-SO_DIR="usr/lib/x86_64-linux-gnu/ruby/vendor_ruby/3.1.0"
+SPEC_DIR="usr/share/rubygems-integration/3.3.0/specifications"
+SO_DIR="usr/lib/x86_64-linux-gnu/ruby/vendor_ruby/3.3.0"
 RB_DIR="usr/lib/ruby/vendor_ruby"
 DOC_DIR="usr/share/doc/ninix-fmo"
 
@@ -30,7 +30,7 @@ mkdir -p ${DOC_DIR}
 cp -r ../debian DEBIAN
 
 grep -v 'extensions = ' < ../gem/specifications/ninix-fmo-${VERSION}.gemspec > ${SPEC_DIR}/ninix-fmo-${VERSION}.gemspec
-cp -r ../gem/extensions/x86_64-linux/3.1.0/ninix-fmo-${VERSION}/ninix-fmo ${SO_DIR}
+cp -r ../gem/extensions/x86_64-linux-gnu/3.3.0/ninix-fmo-${VERSION}/ninix-fmo ${SO_DIR}
 cp ../gem/gems/ninix-fmo-${VERSION}/lib/ninix-fmo.rb ${RB_DIR}
 cp ../gem/gems/ninix-fmo-${VERSION}/lib/ninix-fmo/version.rb ${RB_DIR}/ninix-fmo/
 
